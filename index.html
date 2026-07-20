@@ -8,11 +8,11 @@
     content="width=device-width, initial-scale=1, viewport-fit=cover"
   >
 
-  <title>iAutoAgent Agent Pricing</title>
+  <title>iAutoAgent Agent Pricing and Lead Intake</title>
 
   <meta
     name="description"
-    content="Internal iAutoAgent pricing reference for authorized sales agents."
+    content="Internal iAutoAgent pricing and lead intake reference for authorized sales agents."
   >
 
   <meta
@@ -247,14 +247,18 @@
     .page-actions {
       display: flex;
       flex: 0 0 auto;
+      flex-wrap: wrap;
       gap: 10px;
     }
 
-    .action-button {
+    .action-button,
+    .intake-link,
+    .form-link {
       display: inline-flex;
       min-height: 42px;
       align-items: center;
       justify-content: center;
+      gap: 7px;
       padding: 9px 15px;
       border: 1px solid var(--border);
       border-radius: 9px;
@@ -262,10 +266,12 @@
       color: var(--text);
       font-size: 0.86rem;
       font-weight: 750;
+      text-decoration: none;
       transition:
         border-color 150ms ease,
         background 150ms ease,
-        color 150ms ease;
+        color 150ms ease,
+        transform 150ms ease;
     }
 
     .action-button:hover {
@@ -283,7 +289,23 @@
     .action-button.primary:hover {
       border-color: var(--purple-dark);
       background: var(--purple-dark);
+    }
+
+    .form-link {
+      border-color: var(--green-dark);
+      background: var(--green);
       color: var(--white);
+    }
+
+    .form-link::after,
+    .intake-link::after {
+      content: "↗";
+    }
+
+    .form-link:hover {
+      border-color: var(--green-dark);
+      background: var(--green-dark);
+      transform: translateY(-1px);
     }
 
     .search-panel {
@@ -311,10 +333,6 @@
     .search-icon {
       position: absolute;
       left: 15px;
-      display: grid;
-      width: 20px;
-      height: 20px;
-      place-items: center;
       color: var(--muted);
       pointer-events: none;
     }
@@ -335,14 +353,6 @@
       background: #fcfcfd;
       color: var(--black);
       font-size: 0.95rem;
-      transition:
-        border-color 150ms ease,
-        box-shadow 150ms ease,
-        background 150ms ease;
-    }
-
-    .search-input::placeholder {
-      color: #92929d;
     }
 
     .search-input:focus {
@@ -364,22 +374,13 @@
       font-weight: 800;
     }
 
-    .clear-search:hover {
-      background: #eadff3;
-    }
-
     .search-meta {
       display: flex;
-      align-items: center;
       justify-content: space-between;
       gap: 20px;
       margin-top: 9px;
       color: var(--muted);
       font-size: 0.76rem;
-    }
-
-    .search-shortcut {
-      white-space: nowrap;
     }
 
     kbd {
@@ -388,13 +389,13 @@
       border-bottom-width: 2px;
       border-radius: 5px;
       background: var(--background);
-      color: var(--text);
       font-family: inherit;
       font-size: 0.7rem;
       font-weight: 700;
     }
 
-    .pricing-section {
+    .pricing-section,
+    .form-section {
       overflow: hidden;
       margin-bottom: 24px;
       border: 1px solid var(--border);
@@ -431,6 +432,10 @@
       font-weight: 850;
     }
 
+    .form-section .section-icon {
+      background: var(--green-dark);
+    }
+
     .section-header h2 {
       margin: 0;
       color: var(--black);
@@ -449,57 +454,30 @@
       display: flex;
       flex: 0 0 auto;
       align-items: center;
-      gap: 15px;
+      gap: 14px;
     }
 
     .section-type {
       color: var(--muted);
       font-size: 0.78rem;
       font-weight: 700;
-      text-align: right;
       white-space: nowrap;
     }
 
     .intake-link {
-      display: inline-flex;
       min-height: 40px;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
       padding: 8px 14px;
-      border: 1px solid var(--green-dark);
-      border-radius: 9px;
+      border-color: var(--green-dark);
       background: var(--green-soft);
       color: var(--green-dark);
       font-size: 0.8rem;
       font-weight: 800;
-      text-decoration: none;
-      white-space: nowrap;
-      transition:
-        border-color 150ms ease,
-        background 150ms ease,
-        color 150ms ease,
-        transform 150ms ease;
-    }
-
-    .intake-link::after {
-      content: "↗";
-      font-size: 0.9rem;
-      line-height: 1;
     }
 
     .intake-link:hover {
-      border-color: var(--green-dark);
       background: var(--green);
       color: var(--white);
       transform: translateY(-1px);
-    }
-
-    .intake-link:focus-visible,
-    .action-button:focus-visible,
-    .clear-search:focus-visible {
-      outline: 3px solid rgba(97, 45, 145, 0.25);
-      outline-offset: 3px;
     }
 
     .pricing-group {
@@ -546,7 +524,6 @@
 
     .price-name strong {
       display: block;
-      color: var(--text);
       font-size: 0.95rem;
       font-weight: 700;
     }
@@ -593,14 +570,59 @@
     .no-results strong {
       display: block;
       margin-bottom: 5px;
-      color: var(--black);
-      font-size: 1rem;
     }
 
     .no-results p {
       margin: 0;
       color: var(--muted);
       font-size: 0.86rem;
+    }
+
+    .form-intro {
+      padding: 20px 25px;
+      border-bottom: 1px solid var(--border);
+      background: var(--green-soft);
+    }
+
+    .form-intro strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--green-dark);
+      font-size: 0.92rem;
+    }
+
+    .form-intro p {
+      margin: 0;
+      color: var(--text);
+      font-size: 0.86rem;
+    }
+
+    .form-wrapper {
+      position: relative;
+      width: 100%;
+      min-height: 920px;
+      background: var(--white);
+    }
+
+    .vehicle-inquiry-form {
+      display: block;
+      width: 100%;
+      height: 920px;
+      border: 0;
+      background: var(--white);
+    }
+
+    .form-fallback {
+      margin: 0;
+      padding: 16px 25px 22px;
+      color: var(--muted);
+      font-size: 0.8rem;
+      text-align: center;
+    }
+
+    .form-fallback a {
+      color: var(--purple);
+      font-weight: 800;
     }
 
     .notice {
@@ -624,7 +646,6 @@
     .notice-content strong {
       display: block;
       margin-bottom: 3px;
-      color: var(--black);
       font-size: 0.9rem;
     }
 
@@ -721,7 +742,8 @@
         width: 100%;
       }
 
-      .action-button {
+      .action-button,
+      .form-link {
         flex: 1;
       }
 
@@ -729,12 +751,16 @@
         padding: 19px;
       }
 
-      .section-actions {
-        padding-left: 51px;
-      }
-
       .pricing-group {
         padding: 0 19px;
+      }
+
+      .form-wrapper {
+        min-height: 1100px;
+      }
+
+      .vehicle-inquiry-form {
+        height: 1100px;
       }
 
       .footer-inner {
@@ -758,7 +784,8 @@
         text-align: left;
       }
 
-      .intake-link {
+      .intake-link,
+      .form-link {
         width: 100%;
       }
     }
@@ -784,7 +811,6 @@
       }
 
       .search-meta {
-        align-items: flex-start;
         flex-direction: column;
         gap: 4px;
       }
@@ -794,7 +820,6 @@
       }
 
       .price-row {
-        grid-template-columns: minmax(0, 1fr) auto;
         gap: 12px;
       }
 
@@ -810,21 +835,34 @@
         max-width: 110px;
         white-space: normal;
       }
+
+      .form-intro {
+        padding: 18px;
+      }
+
+      .form-wrapper {
+        min-height: 1250px;
+      }
+
+      .vehicle-inquiry-form {
+        height: 1250px;
+      }
     }
 
     @media print {
-      body {
-        background: var(--white);
-      }
-
       .top-bar,
       .page-actions,
       .internal-badge,
       .search-panel,
       .toast,
       .no-results,
-      .intake-link {
+      .intake-link,
+      .form-section {
         display: none !important;
+      }
+
+      body {
+        background: var(--white);
       }
 
       .page-shell {
@@ -843,11 +881,6 @@
 
       .price-row {
         display: grid !important;
-      }
-
-      .site-header,
-      .site-footer {
-        border-color: #cccccc;
       }
     }
 
@@ -887,7 +920,7 @@
 
         <div class="header-label">
           <strong>Agent Pricing Guide</strong>
-          <span>Sales reference</span>
+          <span>Sales reference and lead intake</span>
         </div>
       </div>
 
@@ -903,8 +936,8 @@
         <h1 id="page-title">Service Charges</h1>
 
         <p class="intro-text">
-          Current Sell Smart and Vehicle Finder pricing. Confirm custom
-          requests and transport quotes before presenting them to a client.
+          Current pricing, program intake links, and the social media Vehicle
+          Inquiry lead form.
         </p>
       </div>
 
@@ -924,6 +957,13 @@
         >
           Print
         </button>
+
+        <a
+          class="form-link"
+          href="#vehicle-inquiry-form"
+        >
+          Vehicle Inquiry Form
+        </a>
       </div>
     </section>
 
@@ -985,7 +1025,7 @@
       hidden
     >
       <strong>No matching charges found.</strong>
-      <p>Try a broader term such as package, inspection, SUV, or transport.</p>
+      <p>Try package, inspection, SUV, transport, or IEC.</p>
     </div>
 
     <section
@@ -1023,7 +1063,7 @@
         <ul class="price-list">
           <li
             class="price-row"
-            data-search="sell smart mobile detailing sedan car 397 $397"
+            data-search="sell smart mobile detailing sedan car 397"
           >
             <div class="price-name">
               <strong>Sedan</strong>
@@ -1034,7 +1074,7 @@
 
           <li
             class="price-row"
-            data-search="sell smart mobile detailing mid size midsize suv 475 $475"
+            data-search="sell smart mobile detailing mid size midsize suv 475"
           >
             <div class="price-name">
               <strong>Mid-Size SUV</strong>
@@ -1045,7 +1085,7 @@
 
           <li
             class="price-row"
-            data-search="sell smart mobile detailing large suv 525 $525"
+            data-search="sell smart mobile detailing large suv 525"
           >
             <div class="price-name">
               <strong>Large SUV</strong>
@@ -1062,7 +1102,7 @@
         <ul class="price-list">
           <li
             class="price-row highlight-row"
-            data-search="sell smart other car concierge request inspection inspections similar requests 120 $120"
+            data-search="sell smart other car concierge request inspection 120"
           >
             <div class="price-name">
               <strong>Other Car Concierge Request</strong>
@@ -1110,7 +1150,7 @@
         <ul class="price-list">
           <li
             class="price-row"
-            data-search="vehicle finder independent mechanical inspection mechanic inspection 250 $250"
+            data-search="vehicle finder independent mechanical inspection mechanic 250"
           >
             <div class="price-name">
               <strong>Independent Mechanical Inspection</strong>
@@ -1121,7 +1161,7 @@
 
           <li
             class="price-row"
-            data-search="vehicle finder miscellaneous misc car concierge request 120 $120"
+            data-search="vehicle finder miscellaneous misc car concierge request 120"
           >
             <div class="price-name">
               <strong>Miscellaneous Car Concierge Request</strong>
@@ -1132,7 +1172,7 @@
 
           <li
             class="price-row"
-            data-search="vehicle finder vehicle transport shipping delivery quote upon request route"
+            data-search="vehicle finder transport shipping delivery quote route"
           >
             <div class="price-name">
               <strong>Vehicle Transport</strong>
@@ -1150,7 +1190,7 @@
         <ul class="price-list">
           <li
             class="price-row"
-            data-search="vehicle finder package silver 697 $697"
+            data-search="vehicle finder package silver 697"
           >
             <div class="price-name">
               <strong>Silver</strong>
@@ -1161,7 +1201,7 @@
 
           <li
             class="price-row"
-            data-search="vehicle finder package gold 997 $997"
+            data-search="vehicle finder package gold 997"
           >
             <div class="price-name">
               <strong>Gold</strong>
@@ -1172,7 +1212,7 @@
 
           <li
             class="price-row"
-            data-search="vehicle finder package platinum 1795 1,795 $1795 $1,795"
+            data-search="vehicle finder package platinum 1795"
           >
             <div class="price-name">
               <strong>Platinum</strong>
@@ -1183,7 +1223,7 @@
 
           <li
             class="price-row"
-            data-search="vehicle finder package fleet 1995 1,995 $1995 $1,995"
+            data-search="vehicle finder package fleet 1995"
           >
             <div class="price-name">
               <strong>Fleet</strong>
@@ -1194,7 +1234,7 @@
 
           <li
             class="price-row highlight-row"
-            data-search="vehicle finder package fleet iec member members special pricing 1596 1,596 $1596 $1,596"
+            data-search="vehicle finder package fleet iec member 1596"
           >
             <div class="price-name">
               <strong>Fleet IEC Member</strong>
@@ -1205,6 +1245,69 @@
           </li>
         </ul>
       </div>
+    </section>
+
+    <section
+      class="form-section"
+      id="vehicle-inquiry-form"
+      aria-labelledby="vehicle-inquiry-heading"
+    >
+      <header class="section-header">
+        <div class="section-title">
+          <span class="section-icon" aria-hidden="true">VI</span>
+
+          <div>
+            <h2 id="vehicle-inquiry-heading">
+              Social Media Vehicle Inquiry
+            </h2>
+
+            <p>
+              Use this form for vehicle inquiries received through social media.
+            </p>
+          </div>
+        </div>
+
+        <a
+          class="form-link"
+          href="https://forms.zohopublic.com/iautoagent/form/VehicleInquiry/formperma/Xj0qy8DLbU4HQhTweT7BN5ZvBIsb_C4WlqpYUi8KvAE"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Open Form in New Tab
+        </a>
+      </header>
+
+      <div class="form-intro">
+        <strong>Agent instruction</strong>
+
+        <p>
+          Complete this form when a prospective buyer contacts iAutoAgent
+          through Facebook, Instagram, TikTok, LinkedIn, or another social
+          media channel.
+        </p>
+      </div>
+
+      <div class="form-wrapper">
+        <iframe
+          class="vehicle-inquiry-form"
+          title="iAutoAgent Social Media Vehicle Inquiry Form"
+          aria-label="Vehicle Inquiry"
+          src="https://forms.zohopublic.com/iautoagent/form/VehicleInquiry/formperma/Xj0qy8DLbU4HQhTweT7BN5ZvBIsb_C4WlqpYUi8KvAE"
+          loading="lazy"
+          referrerpolicy="strict-origin-when-cross-origin"
+        ></iframe>
+      </div>
+
+      <p class="form-fallback">
+        Form not displaying?
+        <a
+          href="https://forms.zohopublic.com/iautoagent/form/VehicleInquiry/formperma/Xj0qy8DLbU4HQhTweT7BN5ZvBIsb_C4WlqpYUi8KvAE"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Open the Vehicle Inquiry form directly.
+        </a>
+      </p>
     </section>
 
     <aside class="notice">
@@ -1249,7 +1352,6 @@
       const printButton = document.getElementById("printButton");
       const currentYear = document.getElementById("currentYear");
       const toast = document.getElementById("toast");
-
       const searchInput = document.getElementById("pricingSearch");
       const clearSearchButton =
         document.getElementById("clearSearchButton");
@@ -1272,10 +1374,9 @@
         "iAutoAgent Service Charges",
         "",
         "SELL SMART",
-        "Mobile Detailing",
-        "Sedan: $397",
-        "Mid-Size SUV: $475",
-        "Large SUV: $525",
+        "Sedan Mobile Detailing: $397",
+        "Mid-Size SUV Mobile Detailing: $475",
+        "Large SUV Mobile Detailing: $525",
         "Other Car Concierge Request: $120",
         "",
         "VEHICLE FINDER",
@@ -1283,7 +1384,7 @@
         "Miscellaneous Car Concierge Request: $120",
         "Transport: Quote upon request",
         "",
-        "PACKAGES",
+        "VEHICLE FINDER PACKAGES",
         "Silver: $697",
         "Gold: $997",
         "Platinum: $1,795",
